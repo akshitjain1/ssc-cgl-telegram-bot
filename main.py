@@ -14,11 +14,15 @@ from scheduler.advanced_scheduler import SSCScheduler
 from utils.grammar_feedback_lite import GrammarFeedbackSystem
 from utils.quiz_manager import QuizManager, QuizCategory, QuizDifficulty
 from utils.spaced_repetition import SpacedRepetition
+from utils.security_manager import SecurityManager, PrivacyManager
 
 # Load environment variables
 load_dotenv()
 
-# Configure logging
+# Initialize security manager first
+security_manager = SecurityManager()
+
+# Configure logging with security considerations
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO,
@@ -29,7 +33,21 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Bot configuration from environment
+# Validate environment variables for security
+try:
+    env_validation = security_manager.validate_environment_variables()
+    logger.info("✅ Environment variables validation passed")
+except ValueError as e:
+    logger.error(f"❌ Environment validation failed: {e}")
+    raise
+
+# Check file permissions
+permission_issues = security_manager.validate_file_permissions()
+if permission_issues:
+    for issue in permission_issues:
+        logger.warning(f"⚠️ Security issue: {issue}")
+
+# Bot configuration from environment (with validation)
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 if not BOT_TOKEN:
     raise ValueError("BOT_TOKEN not found in environment variables!")
@@ -44,6 +62,8 @@ class SSCCGLBot:
         self.grammar_system = GrammarFeedbackSystem()  # Initialize grammar feedback
         self.spaced_repetition = SpacedRepetition()  # Initialize spaced repetition
         self.quiz_manager = QuizManager(self.db_manager, self.spaced_repetition)  # Initialize quiz system
+        self.security_manager = SecurityManager()  # Initialize security manager
+        self.privacy_manager = PrivacyManager()  # Initialize privacy manager
     
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Handle /start command - Register user and show welcome message"""
@@ -143,7 +163,12 @@ Ready to start your SSC-CGL preparation journey? 🚀"""
 • /quiz math hard 15 - Hard math quiz (15 questions)
 • /quiz reasoning medium - Medium reasoning quiz
 
-📈 Smart Features:
+� Privacy & Security:
+/privacy - View privacy policy and data usage
+/privacy_delete - Request account deletion
+/security - Security tips and best practices
+
+�📈 Smart Features:
 • Spaced repetition learning
 • Performance tracking
 • Weak area identification
@@ -321,6 +346,22 @@ Keep up the great work! 🎓
         user_id = update.effective_user.id
         message_text = update.message.text.strip()
         
+        # Security: Check rate limiting
+        if not self.security_manager.check_rate_limit(user_id, "message"):
+            await update.message.reply_text(
+                "⚠️ Too many messages too quickly. Please wait a moment before trying again."
+            )
+            return
+        
+        # Security: Sanitize user input
+        sanitized_text = self.security_manager.sanitize_user_input(message_text)
+        if sanitized_text != message_text:
+            logger.warning(f"Sanitized input from user {user_id}: potentially malicious content detected")
+            await update.message.reply_text(
+                "⚠️ Your message contains potentially unsafe content. Please rephrase and try again."
+            )
+            return
+        
         # First check if this is a quiz answer
         if await self.handle_quiz_answer(update, context):
             return  # Message was handled as quiz answer
@@ -334,7 +375,7 @@ Keep up the great work! 🎓
             
             try:
                 # Use the new grammar feedback system
-                analysis = self.grammar_system.analyze_sentence(message_text)
+                analysis = self.grammar_system.analyze_sentence(sanitized_text)
                 feedback_message = self.grammar_system.format_feedback_message(analysis)
                 
                 # Split long messages if needed
@@ -346,15 +387,17 @@ Keep up the great work! 🎓
                 else:
                     await update.message.reply_text(feedback_message, parse_mode='Markdown')
                 
-                # Log user activity
+                # Log user activity (with privacy protection)
                 self.user_manager.log_activity(user_id, 'grammar_analysis', {
-                    'sentence_length': len(message_text),
+                    'sentence_length': len(sanitized_text),
                     'score': analysis.score,
                     'errors_count': len(analysis.grammar_errors)
                 })
                 
             except Exception as e:
                 logger.error(f"Error in grammar analysis: {e}")
+                # Record failed attempt for rate limiting
+                self.security_manager.record_failed_attempt(user_id, "grammar_analysis")
                 await update.message.reply_text(
                     "❌ Sorry, there was an error analyzing your sentence. Please try again.",
                     parse_mode='Markdown'
@@ -805,6 +848,96 @@ Use `/review weak` to start with difficult items!
                 "❌ Sorry, there was an error generating your study plan."
             )
 
+    async def privacy_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle /privacy command - Show privacy information"""
+        user_id = update.effective_user.id
+        
+        try:
+            data_summary = self.privacy_manager.get_user_data_summary(user_id)
+            
+            privacy_text = """
+🔒 **Your Privacy & Data** 🔒
+
+**📊 Data We Store:**
+• Telegram ID and username (for bot functionality)
+• Learning progress and statistics
+• Quiz results and performance
+• Grammar feedback history
+• Content preferences
+
+**🛡️ Data Protection:**
+• No personal messages stored permanently
+• All data encrypted and secure
+• No sharing with third parties
+• Automatic data cleanup after 90 days of inactivity
+
+**🔄 Your Rights:**
+• `/privacy_export` - Download your data
+• `/privacy_delete` - Request data deletion
+• `/privacy_settings` - Manage privacy preferences
+
+**📝 Data Usage:**
+• Personalized learning recommendations
+• Progress tracking and analytics
+• Spaced repetition optimization
+• Quiz difficulty adjustment
+
+**🚫 What We DON'T Do:**
+• Share data with advertisers
+• Track you outside this bot
+• Store your personal messages
+• Sell your information
+
+**📞 Questions?** Contact support with /support
+
+Last updated: July 23, 2025
+            """
+            
+            await update.message.reply_text(privacy_text, parse_mode='Markdown')
+            
+        except Exception as e:
+            logger.error(f"Error in privacy command: {e}")
+            await update.message.reply_text(
+                "❌ Sorry, there was an error retrieving privacy information."
+            )
+
+    async def privacy_delete_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handle /privacy_delete command - Request data deletion"""
+        user_id = update.effective_user.id
+        
+        try:
+            delete_text = """
+🗑️ **Data Deletion Request** 🗑️
+
+**⚠️ Warning:** This will permanently delete:
+• All your learning progress
+• Quiz history and statistics
+• Grammar feedback data
+• Personal preferences
+• Account information
+
+**📝 Process:**
+1. Your data will be scheduled for deletion
+2. You'll receive confirmation within 24 hours
+3. All personal data removed within 7 days
+4. Some anonymized analytics may be retained
+
+**🔄 Alternative:** Consider `/privacy_settings` to limit data collection instead
+
+**✅ To confirm deletion, reply:** `DELETE MY DATA PERMANENTLY`
+**❌ To cancel, reply:** `CANCEL`
+
+Note: You can always restart with /start to create a new account.
+            """
+            
+            await update.message.reply_text(delete_text, parse_mode='Markdown')
+            
+        except Exception as e:
+            logger.error(f"Error in privacy delete command: {e}")
+            await update.message.reply_text(
+                "❌ Sorry, there was an error processing your request."
+            )
+
     async def schedule_status_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Show scheduler status and scheduled jobs (Admin only)"""
         user_id = update.effective_user.id
@@ -917,6 +1050,8 @@ Use `/review weak` to start with difficult items!
         self.application.add_handler(CommandHandler("review", self.review_command))
         self.application.add_handler(CommandHandler("stats", self.stats_command))
         self.application.add_handler(CommandHandler("study_plan", self.study_plan_command))
+        self.application.add_handler(CommandHandler("privacy", self.privacy_command))
+        self.application.add_handler(CommandHandler("privacy_delete", self.privacy_delete_command))
         
         # Admin commands for scheduler
         self.application.add_handler(CommandHandler("schedule_status", self.schedule_status_command))

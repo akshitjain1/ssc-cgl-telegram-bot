@@ -38,17 +38,17 @@ git push origin main
 
 ```bash
 # Telegram Bot Configuration
-BOT_TOKEN=8034557764:AAGde_xnqqxEMSuqNED6SUf1rgObdTrOha0
-BOT_USERNAME=myGKL_bot
+BOT_TOKEN=your_telegram_bot_token_from_botfather
+BOT_USERNAME=your_bot_username
 
 # AI Service
-GEMINI_API_KEY=AIzaSyC4eg3m_15VR3467tWN7DgId_GafvXc9us
+GEMINI_API_KEY=your_gemini_api_key_from_google_ai_studio
 
 # Admin Configuration
-ADMIN_USER_ID=7772027400  # Replace with your Telegram user ID
+ADMIN_USER_ID=your_telegram_user_id_number
 
 # News API (Optional)
-NEWS_API_KEY=5c73199076cf47e6b80b75c08a1f6910
+NEWS_API_KEY=your_news_api_key_from_newsapi_org
 
 # Database
 DATABASE_URL=sqlite:///database/user_data.db

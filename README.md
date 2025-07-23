@@ -1,15 +1,52 @@
-# SSC-CGL Telegram Bot
+# 🎯 SSC-CGL Telegram Bot
 
-A comprehensive Telegram bot designed to help students prepare for the SSC-CGL (Staff Selection Commission - Combined Graduate Level) examination.
+A comprehensive Telegram bot for SSC-CGL exam preparation with AI-powered features, smart learning, and 24/7 availability.
 
-## Features
+## ✨ Features
 
-- **Daily Vocabulary**: Learn new words with definitions and examples
-- **Idioms & Phrases**: Master common idioms used in English
-- **General Knowledge**: Practice GK questions across various categories
-- **Current Affairs**: Stay updated with latest news and events
-- **Spaced Repetition**: Intelligent learning system that optimizes review timing
-- **Daily Scheduling**: Automated daily content delivery
+🤖 **AI-Powered Learning**
+- Daily vocabulary with examples and usage
+- Grammar feedback using advanced NLP
+- Personalized content generation
+- Smart difficulty adjustment
+
+📚 **Comprehensive Content**
+- 10+ daily vocabulary words
+- 5+ idioms and phrases  
+- Current affairs updates
+- General knowledge facts
+- Practice quizzes
+
+🧠 **Smart Learning System**
+- Spaced repetition algorithm
+- Performance tracking
+- Weak area identification
+- Personalized study plans
+
+📊 **Analytics & Progress**
+- Learning streak tracking
+- Quiz performance analytics
+- Progress visualization
+- Achievement system
+
+⚡ **Advanced Features**
+- Multi-difficulty quiz system
+- Grammar analysis with suggestions
+- Daily scheduled content
+- Admin management tools
+
+## 🔒 Security & Privacy
+
+This bot implements comprehensive security measures:
+
+- ✅ **Environment variable protection**
+- ✅ **Input sanitization and validation**
+- ✅ **Rate limiting and abuse prevention**
+- ✅ **Privacy-focused data handling**
+- ✅ **Secure API key management**
+- ✅ **User data protection**
+
+See [SECURITY.md](SECURITY.md) for detailed security information.
 
 ## Project Structure
 
@@ -33,34 +70,70 @@ ssc-cgl-telegram-bot/
 └── README.md
 ```
 
-## Setup Instructions
+## 🚀 Quick Start
 
-### 1. Clone the Repository
+### 1. Clone Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/akshitjain1/ssc-cgl-telegram-bot.git
 cd ssc-cgl-telegram-bot
 ```
 
-### 2. Install Dependencies
+### 2. Setup Environment
 ```bash
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# or
+.venv\Scripts\activate     # Windows
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 3. Environment Configuration
-1. Copy `.env` file and rename it (remove the example suffix if any)
-2. Fill in your actual values:
-   - Get your Telegram Bot Token from [@BotFather](https://t.me/botfather)
-   - Optionally, get a News API key from [NewsAPI.org](https://newsapi.org)
+### 3. Configure Environment Variables
+```bash
+# Copy template and fill with your values
+cp .env .env.local
 
-### 4. Database Setup
-The SQLite database will be created automatically when the bot runs for the first time.
+# Edit .env.local with your actual API keys:
+# - BOT_TOKEN: Get from @BotFather on Telegram
+# - GEMINI_API_KEY: Get from Google AI Studio
+# - NEWS_API_KEY: Get from newsapi.org (optional)
+# - ADMIN_USER_ID: Your Telegram user ID
+```
+
+### 4. Initialize Database
+```bash
+python -c "from database.db_manager import DatabaseManager; DatabaseManager().initialize_database()"
+```
 
 ### 5. Run the Bot
 ```bash
 python main.py
 ```
 
-## 🚀 Deployment (24x7 Operation)
+## 🌐 Production Deployment
+
+### Deploy to Render.com
+
+1. **Prepare for deployment:**
+   ```bash
+   bash deploy_prep.sh
+   ```
+
+2. **Push to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+3. **Deploy on Render.com:**
+   - Connect your GitHub repository
+   - Set environment variables in Render dashboard
+   - Deploy as a Background Worker
+
+See [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for detailed deployment instructions.
 
 ### Option 1: Render.com (Recommended - Free Tier Available)
 
