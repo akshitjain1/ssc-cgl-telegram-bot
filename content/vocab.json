@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "word": "Abate",
+    "meaning": "to reduce in intensity or amount",
+    "example": "The storm began to abate after several hours.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 2,
+    "word": "Aberrant",
+    "meaning": "departing from an accepted standard",
+    "example": "His aberrant behavior concerned his colleagues.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 3,
+    "word": "Affable",
+    "meaning": "friendly, good-natured, or easy to talk to",
+    "example": "The affable host made everyone feel welcome.",
+    "difficulty": "medium"
+  },
+  {
+    "id": 4,
+    "word": "Alacrity",
+    "meaning": "brisk and cheerful readiness",
+    "example": "She accepted the invitation with alacrity.",
+    "difficulty": "hard"
+  },
+  {
+    "id": 5,
+    "word": "Benevolent",
+    "meaning": "well meaning and kindly",
+    "example": "The benevolent king was loved by his people.",
+    "difficulty": "easy"
+  }
+]

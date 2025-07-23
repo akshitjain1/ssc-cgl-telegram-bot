@@ -1,0 +1,252 @@
+{
+  "date": "2025-07-23",
+  "generated_timestamp": "2025-07-23T10:10:06.716184",
+  "vocab_data": [
+    {
+      "id": 1,
+      "word": "Ubiquitous",
+      "meaning": "present, appearing, or found everywhere.",
+      "example": "Smartphones have become ubiquitous in modern society.",
+      "synonym": "omnipresent",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 2,
+      "word": "Gregarious",
+      "meaning": "fond of company; sociable.",
+      "example": "She is a gregarious person and enjoys attending social gatherings.",
+      "synonym": "sociable",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 3,
+      "word": "Laconic",
+      "meaning": "using very few words.",
+      "example": "His laconic reply suggested he was displeased.",
+      "synonym": "brief",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 4,
+      "word": "Incipient",
+      "meaning": "beginning to happen or develop.",
+      "example": "There were incipient signs of trouble between the two countries.",
+      "synonym": "nascent",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 5,
+      "word": "Ostentatious",
+      "meaning": "characterized by vulgar or excessive display; showy.",
+      "example": "Her ostentatious jewelry drew unwanted attention.",
+      "synonym": "showy",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 6,
+      "word": "Ephemeral",
+      "meaning": "lasting for a very short time.",
+      "example": "The ephemeral nature of youth is often lamented.",
+      "synonym": "transient",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 7,
+      "word": "Quixotic",
+      "meaning": "exceedingly idealistic; unrealistic and impractical.",
+      "example": "His quixotic dreams of world peace seemed unattainable.",
+      "synonym": "idealistic",
+      "difficulty": "hard",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 8,
+      "word": "Proliferation",
+      "meaning": "rapid increase in number.",
+      "example": "The proliferation of nuclear weapons is a serious global concern.",
+      "synonym": "increase",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 9,
+      "word": "Paramount",
+      "meaning": "more important than anything else; supreme.",
+      "example": "The safety of the passengers is of paramount importance.",
+      "synonym": "supreme",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 10,
+      "word": "Esoteric",
+      "meaning": "understood by or intended for only a select few.",
+      "example": "The professor's lecture on esoteric quantum physics left most students confused.",
+      "synonym": "obscure",
+      "difficulty": "hard",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    }
+  ],
+  "idioms_data": [
+    {
+      "id": 1,
+      "idiom": "Get the ball rolling",
+      "meaning": "To start something, to initiate a process or project.",
+      "example": "To get the ball rolling on the new marketing campaign, we need to finalize the budget first.",
+      "category": "business",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 2,
+      "idiom": "Bite the bullet",
+      "meaning": "To face a difficult or unpleasant situation with courage and stoicism.",
+      "example": "I didn't want to have the surgery, but I had to bite the bullet and go through with it.",
+      "category": "difficulty",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 3,
+      "idiom": "A piece of cake",
+      "meaning": "Something that is very easy to do.",
+      "example": "The exam was a piece of cake; I finished it in half the time.",
+      "category": "difficulty",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 4,
+      "idiom": "Break a leg",
+      "meaning": "A way of wishing someone good luck, especially before a performance.",
+      "example": "Break a leg tonight, everyone! I know you'll do great.",
+      "category": "success",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 5,
+      "idiom": "Get something off your chest",
+      "meaning": "To express something that has been bothering you; to confide in someone.",
+      "example": "I needed to get it off my chest, so I finally told him how I felt.",
+      "category": "communication",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    }
+  ],
+  "gk_data": [
+    {
+      "id": 1,
+      "question": "Which ancient civilization is credited with the development of the concept of zero?",
+      "answer": "Indian",
+      "category": "History",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 2,
+      "question": "The world's largest coral reef system is located in which country?",
+      "answer": "Australia",
+      "category": "Geography",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 3,
+      "question": "What is the chemical symbol for gold?",
+      "answer": "Au",
+      "category": "Science",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 4,
+      "question": "Who was the first woman to win the Nobel Prize in Literature?",
+      "answer": "Selma Lagerlöf",
+      "category": "Awards",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 5,
+      "question": "Which economist is known for the concept of 'comparative advantage'?",
+      "answer": "David Ricardo",
+      "category": "Economics",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 6,
+      "question": "In which year did India achieve independence from British rule?",
+      "answer": "1947",
+      "category": "History",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 7,
+      "question": "Which country hosted the FIFA World Cup in 2022?",
+      "answer": "Qatar",
+      "category": "Sports",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 8,
+      "question": "Who authored the book 'To Kill a Mockingbird'?",
+      "answer": "Harper Lee",
+      "category": "Books",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 9,
+      "question": "The Amazon rainforest is primarily located in which continent?",
+      "answer": "South America",
+      "category": "Geography",
+      "difficulty": "easy",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    },
+    {
+      "id": 10,
+      "question": "**(This question requires updating with a relevant 2024-2025 Current Affairs event).**  Which country's president won the [Insert recent Presidential election, e.g., 2024 US Presidential election]?",
+      "answer": "**(Requires update with accurate answer based on the 2024-2025 event)**",
+      "category": "Politics",
+      "difficulty": "medium",
+      "generated_date": "2025-07-23",
+      "source": "gemini"
+    }
+  ],
+  "current_affairs_data": [],
+  "content_stats": {
+    "vocab_count": 10,
+    "idioms_count": 5,
+    "gk_count": 10,
+    "current_affairs_count": 0
+  }
+}

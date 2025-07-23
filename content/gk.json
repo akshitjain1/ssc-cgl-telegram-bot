@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "question": "Who is the current President of India?",
+    "answer": "Droupadi Murmu",
+    "category": "Politics",
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "question": "Which is the longest river in India?",
+    "answer": "Ganges (Ganga)",
+    "category": "Geography",
+    "difficulty": "easy"
+  },
+  {
+    "id": 3,
+    "question": "In which year did India gain independence?",
+    "answer": "1947",
+    "category": "History",
+    "difficulty": "easy"
+  },
+  {
+    "id": 4,
+    "question": "What is the currency of India?",
+    "answer": "Indian Rupee (INR)",
+    "category": "Economics",
+    "difficulty": "easy"
+  },
+  {
+    "id": 5,
+    "question": "Which planet is known as the Red Planet?",
+    "answer": "Mars",
+    "category": "Science",
+    "difficulty": "easy"
+  },
+  {
+    "id": 6,
+    "question": "Who wrote the Indian National Anthem?",
+    "answer": "Rabindranath Tagore",
+    "category": "History",
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "question": "What is the capital of Rajasthan?",
+    "answer": "Jaipur",
+    "category": "Geography",
+    "difficulty": "medium"
+  },
+  {
+    "id": 8,
+    "question": "Which article of the Indian Constitution is related to Right to Education?",
+    "answer": "Article 21A",
+    "category": "Polity",
+    "difficulty": "hard"
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "idiom": "A blessing in disguise",
+    "meaning": "Something that seems bad at first but turns out to be good",
+    "example": "Losing that job was a blessing in disguise - it led me to find a better one.",
+    "category": "common"
+  },
+  {
+    "id": 2,
+    "idiom": "Break the ice",
+    "meaning": "To initiate conversation in a social setting",
+    "example": "He told a joke to break the ice at the meeting.",
+    "category": "social"
+  },
+  {
+    "id": 3,
+    "idiom": "Burn the midnight oil",
+    "meaning": "To work late into the night",
+    "example": "She had to burn the midnight oil to finish the project.",
+    "category": "work"
+  },
+  {
+    "id": 4,
+    "idiom": "Call it a day",
+    "meaning": "To stop working or doing something",
+    "example": "After 10 hours of studying, let's call it a day.",
+    "category": "common"
+  },
+  {
+    "id": 5,
+    "idiom": "Cut corners",
+    "meaning": "To do something in the easiest or cheapest way",
+    "example": "Don't cut corners when preparing for the exam.",
+    "category": "work"
+  }
+]
