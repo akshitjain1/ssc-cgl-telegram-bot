@@ -16,19 +16,26 @@ from utils.quiz_manager import QuizManager, QuizCategory, QuizDifficulty
 from utils.spaced_repetition import SpacedRepetition
 from utils.security_manager import SecurityManager, PrivacyManager
 
-# Load environment variables
-load_dotenv()
+# Load environment variables (prioritize local file for testing)
+import os
+if os.path.exists('.env.local'):
+    print("🔧 Loading local environment variables for testing...")
+    load_dotenv('.env.local', override=True)
+else:
+    print("🌐 Loading production environment variables...")
+    load_dotenv(override=True)
 
 # Initialize security manager first
 security_manager = SecurityManager()
 
-# Configure logging with security considerations
+# Configure logging with security considerations (fixed encoding for Windows)
+import sys
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO,
     handlers=[
-        logging.FileHandler('bot.log'),
-        logging.StreamHandler()
+        logging.FileHandler('bot.log', encoding='utf-8'),
+        logging.StreamHandler(sys.stdout)
     ]
 )
 logger = logging.getLogger(__name__)
@@ -36,7 +43,7 @@ logger = logging.getLogger(__name__)
 # Validate environment variables for security
 try:
     env_validation = security_manager.validate_environment_variables()
-    logger.info("✅ Environment variables validation passed")
+    logger.info("[SUCCESS] Environment variables validation passed")
 except ValueError as e:
     logger.error(f"❌ Environment validation failed: {e}")
     raise
@@ -45,7 +52,7 @@ except ValueError as e:
 permission_issues = security_manager.validate_file_permissions()
 if permission_issues:
     for issue in permission_issues:
-        logger.warning(f"⚠️ Security issue: {issue}")
+        logger.warning(f"[WARNING] Security issue: {issue}")
 
 # Bot configuration from environment (with validation)
 BOT_TOKEN = os.getenv('BOT_TOKEN')
@@ -1143,7 +1150,7 @@ Note: You can always restart with /start to create a new account.
                 logger.error("❌ Network timeout! Please check your internet connection")
                 logger.error("You can also try again in a few moments")
             else:
-                logger.error("❌ Bot startup failed - check your configuration")
+                logger.error("[ERROR] Bot startup failed - check your configuration")
             raise
 
 def main():

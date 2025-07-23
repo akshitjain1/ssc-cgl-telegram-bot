@@ -37,14 +37,14 @@ class SecurityManager:
             if not value:
                 results[var_name] = False
                 critical_missing.append(var_name)
-                logger.error(f"❌ Required environment variable {var_name} is missing")
+                logger.error(f"[ERROR] Required environment variable {var_name} is missing")
             else:
                 is_valid = validator(value)
                 results[var_name] = is_valid
                 if is_valid:
                     logger.info(f"✅ {var_name} is properly configured")
                 else:
-                    logger.error(f"❌ {var_name} format is invalid")
+                    logger.error(f"[ERROR] {var_name} format is invalid")
         
         # Check optional variables
         for var_name, validator in optional_vars.items():
@@ -55,7 +55,7 @@ class SecurityManager:
                 if is_valid:
                     logger.info(f"✅ {var_name} (optional) is properly configured")
                 else:
-                    logger.warning(f"⚠️ {var_name} format is invalid")
+                    logger.warning(f"[WARNING] {var_name} format is invalid")
             else:
                 logger.info(f"ℹ️ {var_name} (optional) not configured")
         
@@ -67,13 +67,13 @@ class SecurityManager:
     def _validate_bot_token(self, token: str) -> bool:
         """Validate Telegram bot token format"""
         # Telegram bot tokens follow pattern: <bot_id>:<token>
-        pattern = r'^\d{8,10}:[A-Za-z0-9_-]{35}$'
+        pattern = r'^\d{8,12}:[A-Za-z0-9_-]{35,}$'
         return bool(re.match(pattern, token))
     
     def _validate_gemini_key(self, key: str) -> bool:
         """Validate Google Gemini API key format"""
-        # Google API keys typically start with AIza and are 39 characters
-        pattern = r'^AIza[A-Za-z0-9_-]{35}$'
+        # Google API keys typically start with AIza and are variable length
+        pattern = r'^AIza[A-Za-z0-9_-]{35,}$'
         return bool(re.match(pattern, key))
     
     def _validate_news_key(self, key: str) -> bool:
